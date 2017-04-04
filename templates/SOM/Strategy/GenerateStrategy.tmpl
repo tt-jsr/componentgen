@@ -1,0 +1,57 @@
+<! *************************************************
+File to generate Strategies. The structure is as follows
+<root> Root element
+	<command>command to execute</command>
+	<file>  Describes the input and output files
+		<input> This is the filename of the input template
+		<output> This is the output file name. You may use variable substitution here. Directories will be created
+				as necessary
+	</file>
+
+	<variable>  Create a variable to substitute
+		<name> This is the name of the variable. Any occurance of $(name) will cause the sequence to be
+				replaced with the value of the variable
+		<prompt> This will cause a dialog box to prompt for the value of the variable
+		<value>  This will define the variable. Variable substitution can be used here as well
+		<file>  This will define the variable from the contents of the specified file
+				(this is not yet implemented)
+	     
+		<prompt>, <value> and <file> are mutually exclusive
+	</variable>
+</root>
+
+There are a number of predefined variables:
+$(DATE) will cause the date to be output in the form of "Wed Jan 02 02:03:55 2005"
+$(TIMESTAMP) will cause the current date to be output as the number of seconds since 1970
+$(RANDOM) will cause a random number to be generated
+$(GUID) generate a GUID
+
+a '%' instead of '$' means force lower case, '@' forces uppercase
+**************************************************************!>
+
+<root>
+	<file>
+		<input>name_Strategy.h</input>
+		<output>$(STRATNAME)Strategy.h</output>
+		<desc>Strategy header file</desc>
+	</file>
+	<file>	
+		<input>name_Strategy.cpp</input>
+		<output>$(STRATNAME)Strategy.cpp</output>
+		<desc>Strategy cpp file</desc>
+	</file>
+	<file>
+		<input>name_Fragments.h</input>
+		<output>$(STRATNAME)Fragments.h</output>
+		<desc>Strategy header file</desc>
+	</file>
+	<file>	
+		<input>name_Fragments.cpp</input>
+		<output>$(STRATNAME)Fragments.cpp</output>
+		<desc>Strategy cpp file</desc>
+	</file>
+	<variable>
+		<name>STRATNAME</name>
+		<prompt>Enter the name of the Strategy to generate, e.g. "Config" to create "ConfigStrategy"</prompt>
+	</variable>
+</root>

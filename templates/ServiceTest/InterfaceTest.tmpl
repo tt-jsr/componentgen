@@ -1,0 +1,73 @@
+<! *************************************************
+File to generate test platform for interfaces.
+
+<file>  Describes the input and output files
+    <input> This is the filename of the input template
+    <output> This is the output file name. You may use variable substitution here. Directories will be created
+             as necessary
+</file>
+
+<variable>  Create a variable to substitute
+     <name> This is the name of the variable. Any occurance of $(name) will cause the sequence to be
+            replaced with the value of the variable
+     <prompt> This will cause a dialog box to prompt for the value of the variable
+     <value>  This will define the variable. Variable substitution can be used here as well
+     <file>  This will define the variable from the contents of the specified file
+             (this is not yet implemented)
+     
+     <prompt>, <value> and <file> are mutually exclusive
+</variable>
+
+There are a number of predefined variables:
+$(DATE) will cause the date to be output in the form of "Wed Jan 02 02:03:55 2005"
+$(TIMESTAMP) will cause the current date to be output as the number of seconds since 1970
+$(RANDOM) will cause a random number to be generated
+
+**************************************************************!>
+
+<root>
+	<file>
+		<input>stdafx.h</input>
+		<output>$(INTERFACENAME)Sim/stdafx.h</output>
+		<desc>Precompiled header</desc>
+	</file>
+	<file>
+		<input>stdafx.cpp</input>
+		<output>$(INTERFACENAME)Sim/stdafx.cpp</output>
+		<desc>Precompiled source</desc>
+	</file>
+	<file>	
+		<input>Client.cpp</input>
+		<output>$(INTERFACENAME)Sim/Client.cpp</output>
+		<desc>Client side app</desc>
+	</file>
+	<file>	
+		<input>ClientSide.h</input>
+		<output>$(INTERFACENAME)Sim/ClientSide.h</output>
+		<desc>Client side header</desc>
+	</file>
+	<file>	
+		<input>Server.cpp</input>
+		<output>$(INTERFACENAME)Sim/Server.cpp</output>
+		<desc>Server side app</desc>
+	</file>
+	<file>	
+		<input>ServerSide.h</input>
+		<output>$(INTERFACENAME)Sim/ServerSide.h</output>
+		<desc>Server side header</desc>
+	</file>
+	<file>	
+		<input>Frameworktest.vcproj_</input>
+		<output>$(INTERFACENAME)Sim/$(INTERFACENAME)Sim.vcproj</output>
+		<desc>Interface test project file</desc>
+	</file>
+	<file>	
+		<input>Frameworktest.cpp</input>
+		<output>$(INTERFACENAME)Sim/$(INTERFACENAME)Sim.cpp</output>
+		<desc>Test main</desc>
+	</file>
+	<variable>
+		<name>INTERFACENAME</name>
+		<prompt>Enter the name of the Interface to test</prompt>
+	</variable>
+</root>

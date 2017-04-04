@@ -1,0 +1,114 @@
+<! *************************************************
+File to generate client and server interfaces. The structure is as follows
+<root> Root element
+	<command>command to execute</command>
+	<file>  Describes the input and output files
+		<input> This is the filename of the input template
+		<output> This is the output file name. You may use variable substitution here. Directories will be created
+				as necessary
+	</file>
+
+	<variable>  Create a variable to substitute
+		<name> This is the name of the variable. Any occurance of $(name) will cause the sequence to be
+				replaced with the value of the variable
+		<prompt> This will cause a dialog box to prompt for the value of the variable
+		<value>  This will define the variable. Variable substitution can be used here as well
+		<file>  This will define the variable from the contents of the specified file
+				(this is not yet implemented)
+	     
+		<prompt>, <value> and <file> are mutually exclusive
+	</variable>
+</root>
+
+There are a number of predefined variables:
+$(DATE) will cause the date to be output in the form of "Wed Jan 02 02:03:55 2005"
+$(TIMESTAMP) will cause the current date to be output as the number of seconds since 1970
+$(RANDOM) will cause a random number to be generated
+$(GUID) generate a GUID
+
+Variable substitutuion taks the form of:
+%(var) - Subsitution will be converted to lower case
+@(var) - substitution will be converted to uppercase
+$(var) - No case conversion will take place
+**************************************************************!>
+
+<root>
+	<file>
+		<input>Client.h</input>
+		<output>Client.h</output>
+		<desc>Client side test process</desc>
+	</file>
+	<file>	
+		<input>Client.cpp</input>
+		<output>Client.cpp</output>
+		<desc>Client side test process</desc>
+	</file>
+	<file>	
+		<input>ClientMenu.cpp</input>
+		<output>ClientMenu.cpp</output>
+		<desc>Client side menu</desc>
+	</file>
+	<file>	
+		<input>ClientOnData.cpp</input>
+		<output>ClientOnData.cpp</output>
+		<desc>Client side data callbacks</desc>
+	</file>
+	<file>	
+		<input>Server.h</input>
+		<output>Server.h</output>
+		<desc>Server side test process</desc>
+	</file>
+	<file>	
+		<input>Server.cpp</input>
+		<output>Server.cpp</output>
+		<desc>Server side test process</desc>
+	</file>
+	<file>	
+		<input>ServerMenu.cpp</input>
+		<output>ServerMenu.cpp</output>
+		<desc>Server side menu</desc>
+	</file>
+	<file>	
+		<input>ServerOnData.cpp</input>
+		<output>ServerOnData.cpp</output>
+		<desc>Server side data callbacks</desc>
+	</file>
+	<file>	
+		<input>stdafx.h</input>
+		<output>stdafx.h</output>
+		<desc>Procompiled header</desc>
+	</file>
+	<file>	
+		<input>stdafx.cpp</input>
+		<output>stdafx.cpp</output>
+		<desc>precompiled header</desc>
+	</file>
+	<file>	
+		<input>name.cpp</input>
+		<output>%(name).cpp</output>
+		<desc>main</desc>
+	</file>
+	<file>	
+		<input>name_7x.vcproj</input>
+		<output>%(name)_7x.vcproj</output>
+		<desc>Project file</desc>
+	</file>
+	<file>
+		<input>common.h</input>
+		<output>common.h</output>
+		<desc>Common header file</desc>
+	</file>
+	<file>
+		<input>readme.txt</input>
+		<output>readme.txt</output>
+		<desc>readme.txt</desc>
+	</file>
+	<variable>
+		<name>name</name>
+		<prompt>Enter the name of this program</prompt>
+	</variable>
+	<variable>
+		<name>ttmver</name>
+		<prompt>Enter the TTM version to compile/link with (V.R only) Example: 1.7</prompt>
+	</variable>
+</root>

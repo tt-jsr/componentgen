@@ -1,0 +1,107 @@
+<! *************************************************
+File to generate client and server interfaces. The structure is as follows
+<root> Root element
+	<command>command to execute</command>
+	<file>  Describes the input and output files
+		<input> This is the filename of the input template
+		<output> This is the output file name. You may use variable substitution here. Directories will be created
+				as necessary
+	</file>
+
+	<variable>  Create a variable to substitute
+		<name> This is the name of the variable. Any occurance of $(name) will cause the sequence to be
+				replaced with the value of the variable
+		<prompt> This will cause a dialog box to prompt for the value of the variable
+		<value>  This will define the variable. Variable substitution can be used here as well
+		<file>  This will define the variable from the contents of the specified file
+				(this is not yet implemented)
+	     
+		<prompt>, <value> and <file> are mutually exclusive
+	</variable>
+</root>
+
+There are a number of predefined variables:
+$(DATE) will cause the date to be output in the form of "Wed Jan 02 02:03:55 2005"
+$(TIMESTAMP) will cause the current date to be output as the number of seconds since 1970
+$(RANDOM) will cause a random number to be generated
+$(GUID) generate a GUID
+
+a '%' instead of '$' means force lower case
+**************************************************************!>
+
+<root>
+	<file>
+		<input>name_Service.h</input>
+		<output>%(INTERFACENAME)/client/%(INTERFACENAME)service.h</output>
+		<desc>Client side service base class</desc>
+	</file>
+	<file>	
+		<input>name_Service.cpp</input>
+		<output>%(INTERFACENAME)/client/%(INTERFACENAME)service.cpp</output>
+		<desc>Client side service base class</desc>
+	</file>
+	<file>	
+		<input>name_ServerService.h</input>
+		<output>%(INTERFACENAME)/server/%(INTERFACENAME)serverservice.h</output>
+		<desc>Server side service base class</desc>
+	</file>
+	<file>	
+		<input>name_ServerService.cpp</input>
+		<output>%(INTERFACENAME)/server/%(INTERFACENAME)serverservice.cpp</output>
+		<desc>Server side service base class</desc>
+	</file>
+	<file>	
+		<input>name_Interface.h</input>
+		<output>%(INTERFACENAME)/client/%(INTERFACENAME)interface.h</output>
+		<desc>Client side interface</desc>
+	</file>
+	<file>	
+		<input>name_Interface.cpp</input>
+		<output>%(INTERFACENAME)/client/%(INTERFACENAME)interface.cpp</output>
+		<desc>Client side interface</desc>
+	</file>
+	<file>	
+		<input>name_ServerInterface.h</input>
+		<output>%(INTERFACENAME)/server/%(INTERFACENAME)serverinterface.h</output>
+		<desc>Server side interface</desc>
+	</file>
+	<file>	
+		<input>name_ServerInterface.cpp</input>
+		<output>%(INTERFACENAME)/server/%(INTERFACENAME)serverinterface.cpp</output>
+		<desc>Server side interface</desc>
+	</file>
+	<file>
+		<input>name_TTMImpl.cpp</input>
+		<output>%(INTERFACENAME)/client/%(INTERFACENAME)ttmimpl.cpp</output>
+		<desc>Client side service implementation for TTM</desc>
+	</file>
+	<file>
+		<input>name_TTMImpl.h</input>
+		<output>%(INTERFACENAME)/client/%(INTERFACENAME)ttmimpl.h</output>
+		<desc>Client side service implementation for TTM</desc>
+	</file>
+	<file>
+		<input>name_ServerTTMImpl.cpp</input>
+		<output>%(INTERFACENAME)/server/%(INTERFACENAME)serverttmimpl.cpp</output>
+		<desc>Server side service implementation for TTM</desc>
+	</file>
+	<file>
+		<input>name_ServerTTMImpl.h</input>
+		<output>%(INTERFACENAME)/server/%(INTERFACENAME)serverttmimpl.h</output>
+		<desc>Server side service implementation for TTM</desc>
+	</file>
+	<file>
+		<input>name_common.h</input>
+		<output>%(INTERFACENAME)/%(INTERFACENAME)_common/%(INTERFACENAME)_common.h</output>
+		<desc>Common implementaion</desc>
+	</file>
+	<file>
+		<input>name_common.cpp</input>
+		<output>%(INTERFACENAME)/%(INTERFACENAME)_common/%(INTERFACENAME)_common.cpp</output>
+		<desc>Common implementaion</desc>
+	</file>
+	<variable>
+		<name>INTERFACENAME</name>
+		<prompt>Enter the name of the Interface to generate</prompt>
+	</variable>
+</root>
